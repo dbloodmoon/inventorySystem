@@ -53,8 +53,7 @@ class Equipo(models.Model):
     mac = models.CharField(max_length=50, default='No asignado')
 
     def __str__(self):
-        return self.usuario
-    
+        return self.usuario.nombre
 # Telefonos celulares    
 
 class Telefono(models.Model):   
@@ -75,7 +74,7 @@ class Telefono(models.Model):
     mac = models.CharField(max_length=50, default='No asignado')
 
     def __str__(self):
-        return self.usuario
+        return self.usuario.nombre
     
 class Impresora(models.Model):
 
@@ -93,7 +92,7 @@ class Impresora(models.Model):
     ipv4 = models.CharField(max_length=50, default='No asignado')
     mac = models.CharField(max_length=50, default='No asignado')
     def __str__(self):
-        return self.ipv4 + ' ' + self.departamento
+        return self.ipv4 + ' ' + self.departamento.nombre
     
     
 class Switch(models.Model):
@@ -138,7 +137,4 @@ class Desincorporacion(models.Model):
     modelo = models.CharField(max_length=50, default='No asignado')
     
     def __str__(self):
-        return self.usuario
-
-
-    
+        return self.usuario.nombre
