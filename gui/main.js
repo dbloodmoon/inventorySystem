@@ -156,16 +156,19 @@ navItems.forEach((item) => {
         insertTableHeader(data);
         eraseTableContent();
         insertTableContent();
-        setCurrentPage(1)
+        setCurrentPage(1);
         // console.log(totalPages)
       })
       .catch((err) => {
         eraseTableContent();
         eraseTableHeader();
         //alert("No hay datos para mostrar");
-        
+
         const div = document.createElement("div");
-        div.setAttribute("class", "alert alert-danger alert-dismissible fade show");
+        div.setAttribute(
+          "class",
+          "alert alert-danger alert-dismissible fade show"
+        );
         div.setAttribute("role", "alert");
         const strong = document.createElement("strong");
         strong.textContent = "Aviso!! No hay ningún dato para mostrar";
@@ -174,28 +177,28 @@ navItems.forEach((item) => {
         button.setAttribute("class", "btn-close");
         button.setAttribute("data-bs-dismiss", "alert");
         button.setAttribute("aria-label", "Close");
-        navPagination.setAttribute("hidden", true)
+        navPagination.setAttribute("hidden", true);
         div.appendChild(strong);
         div.appendChild(button);
         tableBody.appendChild(div);
-        
+
         setTimeout(() => {
           tableHead.removeChild(div);
         }, 3500);
       });
 
-      navPagination.removeAttribute("hidden")
+    navPagination.removeAttribute("hidden");
   });
 });
 
 prevButton.addEventListener("click", () => {
   if (page === 1) return;
-  setCurrentPage(page - 1)
+  setCurrentPage(page - 1);
 });
 
 nextButton.addEventListener("click", () => {
-  if(page === totalPages) return;
-  setCurrentPage(page + 1)
+  if (page === totalPages) return;
+  setCurrentPage(page + 1);
 });
 
 // Coloca el evento a cada elemento de la barra de paginación DEPURAR
@@ -208,14 +211,16 @@ paginationButton.forEach((button) => {
 });
 
 btnAdmin.addEventListener("click", (e) => {
-  window.location.href = "http://localhost:8000/admin"
-})
+  window.location.href = "http://localhost:8000/admin";
+});
 
 btnLogin.addEventListener("click", (e) => {
   e.preventDefault();
-  if( userForm.value === "leinor" || userForm.value === "desi" && passwordForm.value === "1234"){
-    loginSection.setAttribute("hidden", true)
-    mainSection.removeAttribute("hidden")
-  }
-  else alert("Credenciales incorrectas")
-})
+  if (
+    userForm.value === "leinor" ||
+    (userForm.value === "desi" && passwordForm.value === "1234")
+  ) {
+    loginSection.setAttribute("hidden", true);
+    mainSection.removeAttribute("hidden");
+  } else alert("Credenciales incorrectas");
+});
