@@ -100,6 +100,6 @@ class DesincorporacionAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     search_fields = ('marca', 'modelo')
     
     # Campos filtrables en admin
-    list_filter = ('departamento',)
+    # list_filter = ('departamento',)
     
 admin.site.register(Desincorporacion, DesincorporacionAdmin)

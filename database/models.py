@@ -28,7 +28,7 @@ class Empleado(models.Model):
     cedula = models.IntegerField(default=0)
     
     def __str__(self):
-        return self.nombre
+        return str(self.cedula)
 
 # Computadores y Laptops
 
@@ -54,7 +54,7 @@ class Equipo(models.Model):
     mac = models.CharField(max_length=50, default='No asignado')
 
     def __str__(self):
-        return self.usuario.nombre
+        return str(self.usuario.cedula)
 # Telefonos celulares    
 
 class Telefono(models.Model):   
@@ -144,12 +144,11 @@ class Desincorporacion(models.Model):
     
     # Datos corporativos
 
-    departamento = models.ForeignKey(Departamento, on_delete=models.CASCADE, default=0)
     descripcion = models.CharField(max_length=100, default='No asignado')
     
     # Datos de fabrica
 
-    equipo = models.CharField(max_length=50, default='No asignado')
+    equipo = models.ForeignKey(Equipo, on_delete=models.CASCADE, default=0)
     marca = models.CharField(max_length=50, default='No asignado')
     modelo = models.CharField(max_length=50, default='No asignado')
     
