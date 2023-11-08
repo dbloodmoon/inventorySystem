@@ -7,24 +7,48 @@ class DepartamentoSerializer(serializers.ModelSerializer):
         fields = '__all__'
         
 class EmpleadoSerializer(serializers.ModelSerializer):
+
+    departamento_nombre = serializers.SerializerMethodField()
+
     class Meta:
         model = Empleado
         fields = '__all__'
+
+    def get_departamento_nombre(self, obj):
+        return obj.departamento.nombre
         
 class EquipoSerializer(serializers.ModelSerializer):
+
+    empleado_nombre = serializers.SerializerMethodField()
+
     class Meta:
         model = Equipo
         fields = '__all__'
+
+    def get_empleado_nombre(self, obj):
+        return obj.usuario.nombre
         
 class TelefonoSerializer(serializers.ModelSerializer):
+
+    empleado_nombre = serializers.SerializerMethodField()
+
     class Meta:
         model = Telefono
         fields = '__all__'
 
+    def get_empleado_nombre(self, obj):
+        return obj.usuario.nombre
+
 class ImpresoraSerializer(serializers.ModelSerializer):
+
+    departamento_nombre = serializers.SerializerMethodField()
+
     class Meta:
         model = Impresora
         fields = '__all__'
+
+    def get_departamento_nombre(self, obj):
+        return obj.departamento.nombre
         
 class SwitchSerializer(serializers.ModelSerializer):
     class Meta:
@@ -37,6 +61,12 @@ class RouterSerializer(serializers.ModelSerializer):
         fields = '__all__'
         
 class DesincorporacionSerializer(serializers.ModelSerializer):
+
+    departamento_nombre = serializers.SerializerMethodField()
+
     class Meta:
         model = Desincorporacion
         fields = '__all__'
+
+    def get_departamento_nombre(self, obj):
+        return obj.departamento.nombre
