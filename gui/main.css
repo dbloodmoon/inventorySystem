@@ -4,12 +4,13 @@
     box-sizing: border-box;
 }
 
-header {
+.navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 20px;
     background-color: #333;
+    color: #fff;
 }
 
 .nav-links {
@@ -46,6 +47,7 @@ header {
 
 .table tr:hover {
     background-color: #b6b3b3;
+    cursor: pointer;
     transition: all 0.15s ease;
 }
 

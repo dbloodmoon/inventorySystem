@@ -18,6 +18,8 @@ let actualPage = null;
 let totalPages = 0;
 let page = 1;
 let item = [];
+let departamentoSelected = "";
+let isFilter = false;
 
 const getItemFromAPI = (URL) => {
   if (item.length > 0) {
@@ -36,8 +38,39 @@ const getSize = () => {
   return Object.keys(item[0][0]).length;
 };
 
+const filterItems = (filter) => {
+  if (actualPage === "departamento" && !isFilter) {
+    item[0] = [];
+    fetch(apiURL + "empleado")
+      .then((res) => res.json())
+      .then((data) => {
+        for (const key in data) {
+          if (data[key].departamento_nombre === filter) {
+            item[0].push(data[key]);
+          }
+        }
+
+        for (let i = 0; i < item[0].length; i++) {
+          
+          if (item[0][i].hasOwnProperty("departamento")){
+            delete item[0][i]["departamento"];
+          }
+        }
+
+        console.log(item[0][0].length);
+
+        eraseTableContent();
+        eraseTableHeader();
+        insertTableContent();
+        insertTableHeader(data);
+        isFilter = true;
+      });
+  }
+};
+
 const insertTableContent = () => {
   let cont = 1;
+  isFilter = false;
 
   for (const key in item[0]) {
     const elementTr = document.createElement("tr");
@@ -65,6 +98,11 @@ const insertTableContent = () => {
     });
 
     tableBody.appendChild(elementTr);
+
+    elementTr.addEventListener("click", (e) => {
+      departamentoSelected = e.target.textContent;
+      filterItems(departamentoSelected);
+    });
     totalPages = Math.ceil(item[0].length / elementsPerPage);
   }
 };
@@ -181,10 +219,6 @@ navItems.forEach((item) => {
         div.appendChild(strong);
         div.appendChild(button);
         tableBody.appendChild(div);
-
-        setTimeout(() => {
-          tableHead.removeChild(div);
-        }, 3500);
       });
 
     navPagination.removeAttribute("hidden");
