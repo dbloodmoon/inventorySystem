@@ -1,9 +1,10 @@
 from django.contrib import admin
 from . models import *
+from import_export.admin import ImportExportModelAdmin
 
 # Departamentos
 
-class DepartamentoAdmin(admin.ModelAdmin):
+class DepartamentoAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     
     # Campos buscables en admin
     search_fields = ('nombre',)
@@ -15,20 +16,20 @@ admin.site.register(Departamento, DepartamentoAdmin)
 
 # Computadores y Laptops
 
-class EmpleadoAdmin(admin.ModelAdmin):
+class EmpleadoAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     
     # Campos buscables en admin
-    search_fields = ('nombre',)
+    search_fields = ('nombre', 'cedula')
     
     # Campos visibles en admin
-    list_display = ('nombre', 'departamento', 'cargo')
+    list_display = ('nombre', 'departamento', 'cargo', 'cedula')
     
     # Campos filtrables en admin
     list_filter = ('departamento', 'cargo')
 
 admin.site.register(Empleado, EmpleadoAdmin)
 
-class EquipoAdmin(admin.ModelAdmin):
+class EquipoAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     
     # Campos buscables en admin
     search_fields = ('usuario__nombre',)
@@ -41,7 +42,7 @@ class EquipoAdmin(admin.ModelAdmin):
 
 admin.site.register(Equipo, EquipoAdmin)
 
-class ImpresoraAdmin(admin.ModelAdmin):
+class ImpresoraAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     
     # Campos buscables en admin
     search_fields = ('marca', 'modelo')
@@ -54,7 +55,7 @@ class ImpresoraAdmin(admin.ModelAdmin):
 
 admin.site.register(Impresora, ImpresoraAdmin)
 
-class TelefonoAdmin(admin.ModelAdmin):
+class TelefonoAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     
     # Campos buscables en admin
     search_fields = ('usuario__nombre', 'numero')
@@ -67,7 +68,7 @@ class TelefonoAdmin(admin.ModelAdmin):
 
 admin.site.register(Telefono, TelefonoAdmin)
 
-class SwitchAdmin(admin.ModelAdmin):
+class SwitchAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     
     # Campos buscables en admin
     search_fields = ('marca', 'modelo')
@@ -80,7 +81,7 @@ class SwitchAdmin(admin.ModelAdmin):
 
 admin.site.register(Switch, SwitchAdmin)
 
-class RouterAdmin(admin.ModelAdmin):
+class RouterAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     
     # Campos buscables en admin
     search_fields = ('marca', 'modelo')
@@ -93,7 +94,7 @@ class RouterAdmin(admin.ModelAdmin):
 
 admin.site.register(Router, RouterAdmin)
 
-class DesincorporacionAdmin(admin.ModelAdmin):
+class DesincorporacionAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     
     # Campos buscables en admin
     search_fields = ('marca', 'modelo')
