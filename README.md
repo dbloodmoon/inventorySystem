@@ -30,7 +30,7 @@ Paso 5: Migrar a la base dde datos
 	| python manage.py migrate |
 
 Paso 6: Crear super usuario (el administrador del proyecto)
-	| python manage.py|
+	| python manage.py createsuperuser |
 
 Paso 7: Correr el servidor
 	| python manage.py runserver 8000|
