@@ -4,7 +4,7 @@ from django.db import models
 
 class Departamento(models.Model):
 
-    nombre = models.CharField(max_length=50)
+    nombre = models.CharField(max_length=50, default='')
     def __str__(self):
         return self.nombre
 
@@ -22,9 +22,9 @@ CARGOS = [('Gerente', 'Gerente'),
 
 class Empleado(models.Model):   
     
-    nombre = models.CharField(max_length=50)
+    nombre = models.CharField(max_length=50, default='')
     departamento = models.ForeignKey(Departamento, on_delete=models.CASCADE)
-    cargo = models.CharField(choices=CARGOS, max_length=50, default='Sin cargo')
+    cargo = models.CharField(choices=CARGOS, max_length=50, default='')
     cedula = models.IntegerField(default=0)
     
     def __str__(self):
@@ -37,21 +37,21 @@ class Equipo(models.Model):
     # Datos corporativos
     
     usuario = models.ForeignKey(Empleado, on_delete=models.CASCADE)
-    bien_nacional = models.CharField(max_length=6)
+    bien_nacional = models.CharField(max_length=6, default="")
     # Datos de fabrica
 
-    marca = models.CharField(max_length=50)
-    modelo = models.CharField(max_length=50)
+    marca = models.CharField(max_length=50, default='')
+    modelo = models.CharField(max_length=50, default='')
     
-    procesador = models.CharField(max_length=50)
+    procesador = models.CharField(max_length=50, default='')
     ram = models.IntegerField(default=0)
     almacenamiento = models.IntegerField(default=0)
-    tipo_disco = models.CharField(choices=[('SSD', 'SSD'), ('HDD', 'HDD')], max_length=50)
+    tipo_disco = models.CharField(choices=[('SSD', 'SSD'), ('HDD', 'HDD')], max_length=50, default='')
     
     # Datos de Red
     
-    ipv4 = models.CharField(max_length=50)
-    mac = models.CharField(max_length=50)
+    ipv4 = models.CharField(max_length=50, default='')
+    mac = models.CharField(max_length=50, default='')
 
     def __str__(self):
         return str(self.usuario.cedula)
@@ -62,18 +62,18 @@ class Telefono(models.Model):
     # Datos corporativos
     
     usuario = models.ForeignKey(Empleado, on_delete=models.CASCADE)
-    numero = models.CharField(max_length=50)
-    bien_nacional = models.CharField(max_length=6)
+    numero = models.CharField(max_length=50, default='')
+    bien_nacional = models.CharField(max_length=6, default="")
 
     # Datos de fabrica
 
-    marca = models.CharField(max_length=50)
-    modelo = models.CharField(max_length=50)
+    marca = models.CharField(max_length=50, default='')
+    modelo = models.CharField(max_length=50, default='')
     
     # Datos de Red
     
-    ipv4 = models.CharField(max_length=50)
-    mac = models.CharField(max_length=50)
+    ipv4 = models.CharField(max_length=50, default='')
+    mac = models.CharField(max_length=50, default='')
 
     def __str__(self):
         return self.usuario.nombre
@@ -83,17 +83,17 @@ class Impresora(models.Model):
     # Datos corporativos
     
     departamento = models.ForeignKey(Departamento, on_delete=models.CASCADE)
-    bien_nacional = models.CharField(max_length=6)
+    bien_nacional = models.CharField(max_length=6, default="")
 
     # Datos de fabrica
     
-    marca = models.CharField(max_length=50)
-    modelo = models.CharField(max_length=50)
+    marca = models.CharField(max_length=50, default='')
+    modelo = models.CharField(max_length=50, default='')
     
     # Datos de red 
     
-    ipv4 = models.CharField(max_length=50)
-    mac = models.CharField(max_length=50)
+    ipv4 = models.CharField(max_length=50, default='')
+    mac = models.CharField(max_length=50, default='')
     def __str__(self):
         return self.ipv4 + ' ' + self.departamento.nombre
     
@@ -102,18 +102,18 @@ class Switch(models.Model):
 
     # Datos corporativos
     
-    bien_nacional = models.CharField(max_length=6)
+    bien_nacional = models.CharField(max_length=6, default="")
 
     # Datos de fabrica
 
-    marca = models.CharField(max_length=50)
-    modelo = models.CharField(max_length=50)
-    puertos = models.IntegerField()
+    marca = models.CharField(max_length=50, default='')
+    modelo = models.CharField(max_length=50, default='')
+    puertos = models.IntegerField(default=0)
     
     # Datos de Red
     
-    ipv4 = models.CharField(max_length=50)
-    mac = models.CharField(max_length=50)
+    ipv4 = models.CharField(max_length=50, default='')
+    mac = models.CharField(max_length=50, default='')
     def __str__(self):
         return self.ipv4
 
@@ -121,18 +121,18 @@ class Router(models.Model):
     
     # Datos corporativos
     
-    bien_nacional = models.CharField(max_length=6)
+    bien_nacional = models.CharField(max_length=6, default="")
     
     # Datos de fabrica
 
-    marca = models.CharField(max_length=50)
-    modelo = models.CharField(max_length=50)
+    marca = models.CharField(max_length=50, default='')
+    modelo = models.CharField(max_length=50, default='')
     puertos = models.IntegerField(default=0)
     
     # Datos de Red
     
-    ipv4 = models.CharField(max_length=50)
-    mac = models.CharField(max_length=50)
+    ipv4 = models.CharField(max_length=50, default='')
+    mac = models.CharField(max_length=50, default='')
     def __str__(self):
         return self.ipv4
     
@@ -140,20 +140,17 @@ class Desincorporacion(models.Model):
     
     # Datos de usuario
     
-    bien_nacional = models.CharField(max_length=6)
+    bien_nacional = models.CharField(max_length=6, default="")
     
     # Datos corporativos
 
-    descripcion = models.CharField(max_length=100)
+    descripcion = models.CharField(max_length=100, default='')
     
     # Datos de fabrica
 
-    cedula_del_usuario_asignado = models.ForeignKey(Equipo, on_delete=models.CASCADE)
-    marca = models.CharField(max_length=50)
-    modelo = models.CharField(max_length=50)
+    cedula_del_usuario_asignado = models.ForeignKey(Equipo, on_delete=models.CASCADE, default=0)
+    marca = models.CharField(max_length=50, default='')
+    modelo = models.CharField(max_length=50, default='')
     
     def __str__(self):
         return self.departamento.nombre + ' ' + self.modelo
-
-
-    
