@@ -148,9 +148,9 @@ class Desincorporacion(models.Model):
     
     # Datos de fabrica
 
-    cedula_del_usuario_asignado = models.ForeignKey(Equipo, on_delete=models.CASCADE, default=0)
+    responsable = models.ForeignKey(Equipo, on_delete=models.CASCADE, default=0)
     marca = models.CharField(max_length=50, default='')
     modelo = models.CharField(max_length=50, default='')
     
     def __str__(self):
-        return self.departamento.nombre + ' ' + self.modelo
+        return str(self.responsable.usuario.cedula) + " " + self.modelo
