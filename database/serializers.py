@@ -62,11 +62,6 @@ class RouterSerializer(serializers.ModelSerializer):
         
 class DesincorporacionSerializer(serializers.ModelSerializer):
 
-    departamento_nombre = serializers.SerializerMethodField()
-
     class Meta:
         model = Desincorporacion
         fields = '__all__'
-
-    def get_departamento_nombre(self, obj):
-        return obj.departamento.nombre
