@@ -165,6 +165,7 @@ const insertTableHeader = (data) => {
       element.textContent = "asignado";
     else if (Object.keys(item[0][0])[i] === "usuario") continue;
     else if (Object.keys(item[0][0])[i] === "departamento") continue;
+    else if (Object.keys(item[0][0])[i] === "responsable") continue;
     else element.textContent = Object.keys(item[0][0])[i];
 
     tableHead.appendChild(element);
