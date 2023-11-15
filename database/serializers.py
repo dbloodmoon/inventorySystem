@@ -65,3 +65,9 @@ class DesincorporacionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Desincorporacion
         fields = '__all__'
+
+class SolvenciaSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Solvencia
+        fields = '__all__'

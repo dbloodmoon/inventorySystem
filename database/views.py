@@ -4,7 +4,7 @@ from .serializers import *
 from .models import *
 
 class DepartamentoViewSet(viewsets.ModelViewSet):
-    queryset = Departamento.objects.all()
+    queryset = Departamento.objects.all().order_by('id')
     serializer_class = DepartamentoSerializer
     
     def get_queryset(self):
@@ -65,4 +65,11 @@ class DesincorporacionViewSet(viewsets.ModelViewSet):
     
     def get_queryset(self):
         queryset = self.queryset
+        usuario_nombre = self.request.query_params.get('usuario', None)
+        if usuario_nombre is not None:
+            queryset = queryset.filter(name=usuario_nombre)
         return queryset
+    
+class SolvenciaViewset(viewsets.ModelViewSet):
+    queryset = Solvencia.objects.all()
+    serializer_class = SolvenciaSerializer
