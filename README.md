@@ -1,4 +1,4 @@
-![image](https://github.com/dbloodmoon/inventorySystem/assets/70828221/17b4ace0-51f3-427f-aee5-a493f32ce139)# inventorySystem
+# inventorySystem
 Un sistema para manejar inventario de activos 
 
 Requisitos: Instalar Python 3.12, Instalar Postgre (ultima version)
