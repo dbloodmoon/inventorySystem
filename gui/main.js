@@ -7,10 +7,7 @@ const navPagination = document.querySelector(".nav-pagination");
 const paginationButton = document.querySelectorAll(".page-item");
 const userForm = document.querySelector("#usuarioForm");
 const passwordForm = document.querySelector("#passwordForm");
-const mainSection = document.querySelector("#main-section");
-const loginSection = document.querySelector("#login-section");
 const btnAdmin = document.querySelector("#btnAdmin");
-const btnLogin = document.querySelector("#btnLogin");
 const tableHead = document.querySelector("#tableHead");
 const tableBody = document.querySelector("#tableBody");
 const elementsPerPage = 10;
@@ -30,7 +27,7 @@ const getItemFromAPI = (URL) => {
     .then((res) => res.json())
     .then((data) => {
       item.push(data);
-      //  console.log(item);
+      console.log(item);
     });
 };
 
@@ -51,8 +48,7 @@ const filterItems = (filter) => {
         }
 
         for (let i = 0; i < item[0].length; i++) {
-          
-          if (item[0][i].hasOwnProperty("departamento")){
+          if (item[0][i].hasOwnProperty("departamento")) {
             delete item[0][i]["departamento"];
           }
         }
@@ -249,13 +245,3 @@ btnAdmin.addEventListener("click", (e) => {
   window.location.href = "http://localhost:8000/admin";
 });
 
-btnLogin.addEventListener("click", (e) => {
-  e.preventDefault();
-  if (
-    userForm.value === "leinor" ||
-    (userForm.value === "desi" && passwordForm.value === "1234")
-  ) {
-    loginSection.setAttribute("hidden", true);
-    mainSection.removeAttribute("hidden");
-  } else alert("Credenciales incorrectas");
-});
